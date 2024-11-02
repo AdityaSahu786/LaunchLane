@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from "next/link"
+import { X } from 'lucide-react';
 
 export const SearchFormReset = () => {
 
@@ -15,7 +16,7 @@ export const SearchFormReset = () => {
     <button type="reset" onClick={reset}>
          
          <Link href="/" className="search-btn text-white">
-            X
+            <X className='size-5'/>
          </Link>
 
     </button>
