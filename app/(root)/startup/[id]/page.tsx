@@ -6,6 +6,10 @@ import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 
+import markdownit from 'markdown-it'
+
+const md = markdownit();
+
 export const experimental_ppr = true;
 
 const Page = async ({ params}: { params: Promise<{id: string}>}) => {
@@ -15,6 +19,8 @@ const Page = async ({ params}: { params: Promise<{id: string}>}) => {
 
     if(!post) return notFound();
     
+    const parsedContent = md.render(post?.pitch || '');
+
     return  (
     <>
       <section className="pink_container">
@@ -40,8 +46,20 @@ const Page = async ({ params}: { params: Promise<{id: string}>}) => {
                          height={64}
                          className="rounded-full drop-shadow-lg"
                          />
+
+                         <div>
+                          <p className="text-20-medium">{post.author.name}</p>
+                          <p className="text-16-medium !text-black-300">
+                            @{post.author.username}
+                          </p>
+                         </div>
                   </Link>
+                  <p className="category-tag">{post.category}</p>
                </div>
+
+               <h3 className="text-30-bold">
+                Pitch Details
+               </h3>
             </div>
       </section>
       
